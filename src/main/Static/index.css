@@ -1,0 +1,71 @@
+body{
+	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+ul{
+   	list-style-type: none;
+    overflow: hidden;
+    background-color: rgb(255, 255, 255);
+    position: fixed;
+    top: 0;
+    width: 100%;
+    margin-top: 6px;
+    margin-bottom: 0px;
+    padding-left: 0;
+}
+
+li{
+	display: inline;
+	float: right;
+	font-size: 20px;
+	margin: 9px 0px;
+	margin-right: 10px;
+}
+
+li a{
+	font-family: 'Open Sans', 'Helvetica Neue', Arial, sans-serif;
+    display: block;
+    color: rgb(41, 163, 41);
+    text-decoration: none;
+    padding: 9px 13px;
+}
+
+li a:hover:not(.active) {
+   opacity: 0.7;
+}
+
+.active {
+    color: black;
+}
+
+#search{
+	top: 0px;
+	left: 0px;
+	width: 100%;
+	height: 100%;
+	background-color: white;
+	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+#search input[type="informations"]{
+	position: absolute;
+	top: 40%;
+	width: 100%;
+	opacity: 0.8;
+    font-size: 90px;
+    font-weight: normal;
+    text-align: center;
+    border: 0px;
+    margin: 0px auto;
+    margin-top: -5%;
+    outline: none;
+}
+
+#search input[placeholder="Enter Keywords Here"]{
+	color: rgb(41, 163, 41);
+}
+
+#search input::placeholder {
+  color: rgb(41, 163, 41);
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
