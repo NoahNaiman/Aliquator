@@ -13,8 +13,16 @@ import com.mongodb.client.model.Indexes;
 import static com.mongodb.client.model.Accumulators.sum;
 import static com.mongodb.client.model.Aggregates.group;
 import static com.mongodb.client.model.Aggregates.match;
-import static com.mongodb.client.model.Filters.eq;
-import static java.util.Arrays.asList;
+import com.mongodb.client.MongoCursor;
+import static com.mongodb.client.model.Filters.*;
+import com.mongodb.client.result.DeleteResult;
+import static com.mongodb.client.model.Updates.*;
+import com.mongodb.client.result.UpdateResult;
+
+import com.mongodb.MongoClientURI;
+import com.mongodb.ServerAddress;
+import com.mongodb.Block;
+
 
 import java.util.Scanner; //Temporary, just for basic testing purposes for now.
 
@@ -39,8 +47,8 @@ public class AliquatorAdder{
 	private LinkedList<String> equationUnits;
 
 	public AliquatorAdder(){
-		mongoClient = new MongoClient(); //Maybe change this later when host and port and url is established?
-		mongoDatabase = new mongoClient.getDatabase("aliquatorTester"); //Currently uses just test databases, change later.
+		mongoClient = new MongoClient("localhost", 27017); //Maybe change this later when host and port and url is established?
+		mongoDatabase = mongoClient.getDatabase("aliquatorTester"); //Currently uses just test databases, change later.
 		equationCollection = mongoDatabase.getCollection("equations");
 		algorithmCollection = mongoDatabase.getCollection("algorithms");
 		input = new Scanner(System.in); //Using Scanner for now to get info
@@ -54,7 +62,7 @@ public class AliquatorAdder{
 	 * @return the number of equations in database
 	 */
 	public int howManyEquations(){
-		int num = equationCollection.count();
+		int num = (int)equationCollection.count();
 		return num;
 	}
 
@@ -62,7 +70,7 @@ public class AliquatorAdder{
 	 * @return the number of algorithms in database
 	 */
 	public int howManyAlgorithms(){
-		int num = algorithmCollection.count();
+		int num = (int)algorithmCollection.count();
 		return num;
 	}
 
@@ -114,13 +122,13 @@ public class AliquatorAdder{
 
 		do{
 			equationUnits.add(part);
-			System.out.println("Please enter next unit, or 'x' to quit:\n")
+			System.out.println("Please enter next unit, or 'x' to quit:\n");
 		}while(!part.equalsIgnoreCase("x"));
 
 		String[] equUnits = equationUnits.toArray(new String[0]);
 		Document newDoc = new Document("name", algorithmName)
 							.append("description", algorithmDescription)
-							.append("equation", algorithmItself);
+							.append("equation", algorithmItself)
 							.append("units", Arrays.asList(equUnits));
 		algorithmCollection.insertOne(newDoc);
 	}
