@@ -7,6 +7,30 @@
   <version>1.0-SNAPSHOT</version>
   <name>Aliquator</name>
   <url>http://maven.apache.org</url>
+  <build>  
+    <plugins>  
+      <plugin>  
+      <groupId>org.codehaus.mojo</groupId>  
+      <artifactId>exec-maven-plugin</artifactId>  
+      <version>1.6.0</version>  
+      <executions>  
+    <execution>  
+     <phase>test</phase>  
+     <goals>  
+      <goal>java</goal>  
+     </goals>    
+    </execution>  
+   </executions> 
+   <configuration>  
+      <mainClass>com.Naiman.Aliquator.AliquatorTester</mainClass>  
+      <arguments>  
+       <argument>arg0</argument>  
+       <argument>arg1</argument>  
+      </arguments>  
+     </configuration> 
+  </plugin>  
+ </plugins>  
+</build>  
   <dependencies>
     <dependency>
       <groupId>junit</groupId>
