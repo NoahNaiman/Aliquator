@@ -35,11 +35,11 @@ public class AliquatorTester{
 
 		System.out.println("Would you like to enter something? Y/N:\n");
 		String yesNo = input.nextLine();
-		do{
+		while(!yesNo.equalsIgnoreCase("n")){
 			adder.addTo();
 			System.out.println("Would you like to enter something else? Y/N:\n");
 			yesNo = input.nextLine();
-		}while(!yesNo.equalsIgnoreCase("n"));
+		}
 		System.out.println("Goodbye.");
 	}
 }
