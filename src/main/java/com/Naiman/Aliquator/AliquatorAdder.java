@@ -82,7 +82,7 @@ public class AliquatorAdder{
 	public void addTo(){
 		System.out.println("Enter 'a' for algorithm or 'e' for equation:\n");
 		String aOrE = input.nextLine();
-		while(!aOrE.equalsIgnoreCase("a") || !aOrE.equalsIgnoreCase("e")){
+		while(!aOrE.equalsIgnoreCase("a") && !aOrE.equalsIgnoreCase("e")){
 			System.out.println("Only 'a' and 'e' are valid options:\n");
 			aOrE = input.nextLine();
 		}
@@ -104,9 +104,20 @@ public class AliquatorAdder{
 			System.out.println("Please enter your equation:\n");
 			equationItself = input.nextLine();
 
+			System.out.println("Please enter all units your array will have. Enter 'x' to quit:\n");
+			String part = input.nextLine();
+
+			do{
+				equationUnits.add(part);
+				System.out.println("Please enter next unit, or 'x' to quit:\n");
+				part = input.nextLine();
+			}while(!part.equalsIgnoreCase("x"));
+
+			String[] equUnits = equationUnits.toArray(new String[0]);
 			Document newDoc = new Document("name", equationName)
 							.append("description", equationDescription)
-							.append("equation", equationItself);
+							.append("equation", equationItself)
+							.append("units", Arrays.asList(equUnits));
 			equationCollection.insertOne(newDoc);
 	}
 
@@ -119,19 +130,9 @@ public class AliquatorAdder{
 		System.out.println("Please enter your algorithm:\n");
 		algorithmItself = input.nextLine();
 
-		System.out.println("Please enter all units your array will have. Enter 'x' to quit:\n");
-		String part = input.nextLine();
-
-		do{
-			equationUnits.add(part);
-			System.out.println("Please enter next unit, or 'x' to quit:\n");
-		}while(!part.equalsIgnoreCase("x"));
-
-		String[] equUnits = equationUnits.toArray(new String[0]);
 		Document newDoc = new Document("name", algorithmName)
 							.append("description", algorithmDescription)
-							.append("equation", algorithmItself)
-							.append("units", Arrays.asList(equUnits));
+							.append("equation", algorithmItself);
 		algorithmCollection.insertOne(newDoc);
 	}
 
