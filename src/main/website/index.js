@@ -1,3 +1,1 @@
-var MongoClient = require('mongodb').MongoClient;
-var assert = require('assert');
-
+//Scripts used for index.html concering general css stuff
