@@ -3,12 +3,14 @@
 //Library Imports
 var MongoClient = require('mongodb').MongoClient;
 var assert = require('assert');
+var ObjectID = require('mongodb').ObjectID
 var express = require('express');
 
 //Initialize express
 var app = express();
 
-var url = 'mongodb://localhost:27017/aliquatorTester';
+//Goes through this database
+var url = 'mongodb://localhost:3000/aliquatorTester';
 
 MongoClient.connect(url, function(err, db){
 	assert.equal(null, err);
