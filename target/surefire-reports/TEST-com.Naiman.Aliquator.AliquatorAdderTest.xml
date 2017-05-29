@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite tests="1" failures="0" name="com.Naiman.Aliquator.AliquatorAdderTest" time="0.001" errors="0" skipped="0">
+<testsuite tests="1" failures="0" name="com.Naiman.Aliquator.AliquatorAdderTest" time="0.002" errors="0" skipped="0">
   <properties>
     <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
     <property name="sun.boot.library.path" value="/Library/Java/JavaVirtualMachines/jdk1.8.0_102.jdk/Contents/Home/jre/lib"/>
@@ -36,7 +36,7 @@
     <property name="os.version" value="10.12.4"/>
     <property name="library.jansi.path" value="/usr/local/Cellar/maven/3.5.0/libexec/lib/jansi-native/osx64"/>
     <property name="user.home" value="/Users/NoahNaiman"/>
-    <property name="user.timezone" value="America/New_York"/>
+    <property name="user.timezone" value="America/Denver"/>
     <property name="java.awt.printerjob" value="sun.lwawt.macosx.CPrinterJob"/>
     <property name="java.specification.version" value="1.8"/>
     <property name="file.encoding" value="UTF-8"/>
@@ -61,5 +61,5 @@
     <property name="sun.io.unicode.encoding" value="UnicodeBig"/>
     <property name="sun.cpu.isalist" value=""/>
   </properties>
-  <testcase classname="com.Naiman.Aliquator.AliquatorAdderTest" name="testApp" time="0.001"/>
+  <testcase classname="com.Naiman.Aliquator.AliquatorAdderTest" name="testApp" time="0.002"/>
 </testsuite>

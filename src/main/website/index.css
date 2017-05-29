@@ -28,6 +28,8 @@ li a{
     color: rgb(41, 163, 41);
     text-decoration: none;
     padding: 9px 13px;
+    -webkit-transition-duration: 0.5s; /* Safari */
+    transition-duration: 0.5s;
 }
 
 li a:hover:not(.active) {

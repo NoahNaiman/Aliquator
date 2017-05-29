@@ -1,51 +1,51 @@
-//Hosted server, used to retrieve data
+//Hosted server, used to retrieve and process data
 
-//Library Imports
+//Library imports
 var MongoClient = require('mongodb').MongoClient;
-var assert = require('assert');
-var ObjectID = require('mongodb').ObjectID
 var express = require('express');
-
-//Initialize express
 var app = express();
 
 //Goes through this database
-var url = 'mongodb://localhost:3000/aliquatorTester';
+var url = 'mongodb://localhost:27017/aliquatorTester';
 
-MongoClient.connect(url, function(err, db){
-	assert.equal(null, err);
-	console.log("Connected succesfully to server");
+//Express Routes
+app.use(express.static(__dirname + '/'));	//For CSS
 
-	db.close();
+app.get('/', function(req, res){	//For Homepage
+	res.sendFile(__dirname + '/index.html');
 });
 
-// function connectToMongodb(){
-// 	MongoClient.connect(url, function(err, db){
-// 		assert.equal(null, err);
-// 		console.log("Connected succesfully to server");
+app.get('/lookup', function(req, res){	//When information request is made
+	var informations = req.query.informationSearch;
+	informations = informations.replace(/,/g, '');
+	var infoArray = [];
+   	var toAdd = '';
+    for(var i = 0; i < informations.length; i++){
+    	toAdd += informations[i];
+    	if(informations[i+1] == ' ' || (i+1) == informations.length){
+    		infoArray.push(toAdd);
+    		toAdd = '';
+    	}
+    }
+    for(var i = 0; i < infoArray.length; i++){
+    	if(infoArray[i][0] == ' '){
+    		infoArray[i] = infoArray[i].replace(' ', '');
+    	}
+    }
+    console.log(infoArray);
 
-// 		db.close();
-// 	});
-// }
-
-var findDocuments = function(args, db, callback){
-	var equCollection = db.collection('equations');
-	var algCollection = db.collection('algorithms');
-
-	equCollection.find({units:{$all: args}}).toArray(function(err, docs){
-		assert.equal(err, null);
-		console.log("Found the following records: ");
-		console.log(docs);
-		callback(docs);
-	});
-}
-
-var pull = function(args, db, callback){
 	MongoClient.connect(url, function(err, db){
-		assert.equal(null, err);
-		console.log("Connected succesfully to server");
-
-		findDocuments(args, db, callback);
+		console.log("Connected succesfully to Mongodb Server");
+		var equCollection = db.collection('equations');
+		var algCollection = db.collection('algorithms');
+		equCollection.find({units: {$in: infoArray}}).toArray(function(err, docs){
+			res.send(docs);
+		});
 		db.close();
 	});
-}
+});
+
+//Server starts listening
+app.listen(3000, function(){
+	console.log('Listening on port: 3000');
+});

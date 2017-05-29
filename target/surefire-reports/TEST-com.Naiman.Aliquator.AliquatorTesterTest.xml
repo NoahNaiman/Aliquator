@@ -36,7 +36,7 @@
     <property name="os.version" value="10.12.4"/>
     <property name="library.jansi.path" value="/usr/local/Cellar/maven/3.5.0/libexec/lib/jansi-native/osx64"/>
     <property name="user.home" value="/Users/NoahNaiman"/>
-    <property name="user.timezone" value="America/New_York"/>
+    <property name="user.timezone" value="America/Denver"/>
     <property name="java.awt.printerjob" value="sun.lwawt.macosx.CPrinterJob"/>
     <property name="java.specification.version" value="1.8"/>
     <property name="file.encoding" value="UTF-8"/>
