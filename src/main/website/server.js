@@ -2,15 +2,14 @@
 
 //Library imports
 var MongoClient = require('mongodb').MongoClient;
+var fs = require('fs');
 var express = require('express');
 var app = express();
 
 //Goes through this database
-var url = 'mongodb://localhost:27017/aliquatorTester';
+var url = 'mongodb://localhost/aliquatorTester';
 
 //Express Routes
-app.use(express.static(__dirname + '/'));	//For CSS
-
 app.get('/', function(req, res){	//For Homepage
 	res.sendFile(__dirname + '/index.html');
 });
@@ -44,6 +43,9 @@ app.get('/lookup', function(req, res){	//When information request is made
 		db.close();
 	});
 });
+
+app.use(express.static(__dirname + '/'));	//For CSS
+
 
 //Server starts listening
 app.listen(3000, function(){
