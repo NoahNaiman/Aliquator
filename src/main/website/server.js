@@ -11,6 +11,11 @@ var url = 'mongodb://localhost/aliquatorTester';
 
 //Express Routes
 app.get('/', function(req, res){	//For Homepage
+	fs.writeFile("answers.json", '', function(err) {
+		if(err){
+			return console.log(err);
+			}
+		});
 	res.sendFile(__dirname + '/index.html');
 });
 
@@ -37,11 +42,17 @@ app.get('/lookup', function(req, res){	//When information request is made
 		console.log("Connected succesfully to Mongodb Server");
 		var equCollection = db.collection('equations');
 		var algCollection = db.collection('algorithms');
-		equCollection.find({units: {$in: infoArray}}).toArray(function(err, docs){
-			res.send(docs);
+		equCollection.find({units: {$in: infoArray}}).forEach(function(doc){
+			console.log(doc.equation);
+			fs.appendFile("answers.json", JSON.stringify(doc), function(err) {
+				if(err){
+					return console.log(err);
+				}
+			});
 		});
 		db.close();
 	});
+	res.sendFile(__dirname + '/answers.html');
 });
 
 app.use(express.static(__dirname + '/'));	//For CSS

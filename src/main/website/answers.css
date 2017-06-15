@@ -1,0 +1,38 @@
+body{
+	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+ul{
+   	list-style-type: none;
+    overflow: hidden;
+    background-color: rgb(255, 255, 255);
+    position: fixed;
+    top: 0;
+    width: 100%;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    margin-left: -8px;
+    padding-left: 0;
+}
+
+li{
+	display: inline;
+	float: right;
+	font-size: 20px;
+	margin-right: 10px;
+    margin-top: 15px;
+}
+
+li a{
+	font-family: 'Open Sans', 'Helvetica Neue', Arial, sans-serif;
+    display: block;
+    color: rgb(41, 163, 41);
+    text-decoration: none;
+    padding: 9px 13px;
+    -webkit-transition-duration: 0.5s; /* Safari */
+    transition-duration: 0.5s;
+}
+
+li a:hover{
+   opacity: 0.7;
+}
