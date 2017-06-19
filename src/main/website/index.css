@@ -64,7 +64,7 @@ li a:hover:not(.active) {
     outline: none;
 }
 
-#search input[placeholder="Enter Keywords Here"]{
+#search input[placeholder="Enter Units Here"]{
 	color: rgb(41, 163, 41);
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
@@ -72,6 +72,7 @@ li a:hover:not(.active) {
 #search input::placeholder {
   color: rgb(41, 163, 41);
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  text-decoration: underline;
 }
 
 #search .btn {

@@ -21,7 +21,6 @@ $(window).on("load", function(){
 					informations = informations.substring(3);
 				}
 			else if((informations[0] + informations[1] + informations[2] + informations[3] + informations[4] + informations[5] + informations[6] + informations[7] + informations[8] + informations[9] + informations[10] + informations[11] + informations[12] + informations[13]) == 'description":"'){
-				console.log("entering description");
 				informations = informations.substring(14);
 				var description = '';
 				while(informations[0] != '"'){
@@ -48,9 +47,11 @@ $(window).on("load", function(){
 		for(var i = 0; i < toPrint.length; i++){
 			for(var i = 0; i < toPrint.length; i++){
 				if((i+1)%3 == 0){
-					$("body").append("<p class='EquHeader'>" + toPrint[i-2]);
-					$("body").append("<p class='EquSelf'>" + toPrint[i]);	
-					$("body").append("<p class='EquDescription'>" + toPrint[i-1]);
+					$("body").append("<hr>");
+					$("body").append("<ul class='equList'>");
+					$("body ul").last().append("<li class='equHeader'>" + toPrint[i-2]);
+					$("body ul").last().append("<li class='equSelf'>" + toPrint[i]);
+					$("body ul").last().append("<li class='equDescription'>" + toPrint[i-1]);
 				}
 			}
 		}

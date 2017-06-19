@@ -50,9 +50,9 @@ public class AliquatorAdder{
 
 	public AliquatorAdder(){
 		mongoClient = new MongoClient("localhost", 27017); //Maybe change this later when host and port and url is established?
-		mongoDatabase = mongoClient.getDatabase("aliquatorTester"); //Currently uses just test databases, change later.
+		mongoDatabase = mongoClient.getDatabase("Aliquator"); //Official Database switched to as of 6/19/2017.
 		equationCollection = mongoDatabase.getCollection("equations");
-		algorithmCollection = mongoDatabase.getCollection("algorithms");
+		algorithmCollection = mongoDatabase.getCollection("algorithms"); //Currently not used, possible for later usage.
 		input = new Scanner(System.in); //Using Scanner for now to get info
 
 		//Instantiates linked lists for equation parts and units
@@ -104,7 +104,7 @@ public class AliquatorAdder{
 			System.out.println("Please enter your equation:\n");
 			equationItself = input.nextLine();
 
-			System.out.println("Please enter all units your array will have. Enter 'x' to quit:\n");
+			System.out.println("Please enter one unit of your equation at a time. When all are entered, type 'x' to quit:\n");
 			String part = input.nextLine();
 
 			do{

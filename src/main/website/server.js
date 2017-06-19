@@ -7,7 +7,7 @@ var express = require('express');
 var app = express();
 
 //Goes through this database
-var url = 'mongodb://localhost/aliquatorTester';
+var url = 'mongodb://localhost/Aliquator';
 
 //Express Routes
 app.get('/', function(req, res){	//For Homepage
@@ -36,14 +36,12 @@ app.get('/lookup', function(req, res){	//When information request is made
     		infoArray[i] = infoArray[i].replace(' ', '');
     	}
     }
-    console.log(infoArray);
 
 	MongoClient.connect(url, function(err, db){
 		console.log("Connected succesfully to Mongodb Server");
 		var equCollection = db.collection('equations');
 		var algCollection = db.collection('algorithms');
 		equCollection.find({units: {$in: infoArray}}).forEach(function(doc){
-			console.log(doc.equation);
 			fs.appendFile("answers.json", JSON.stringify(doc), function(err) {
 				if(err){
 					return console.log(err);
