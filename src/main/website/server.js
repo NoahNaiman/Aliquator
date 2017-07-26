@@ -5,6 +5,7 @@ var MongoClient = require('mongodb').MongoClient;
 var fs = require('fs');
 var express = require('express');
 var app = express();
+app.set('view engine', 'pug');
 
 //Goes through this database
 var url = 'mongodb://localhost/Aliquator';
@@ -24,9 +25,9 @@ app.get('/lookup', function(req, res){	//When information request is made
 	informations = informations.replace(/,/g, '');
 	var infoArray = [];
    	var toAdd = '';
-    for(var i = 0; i < informations.length; i++){
+    for(var i = 0; i < informations.length; i++) {
     	toAdd += informations[i];
-    	if(informations[i+1] == ' ' || (i+1) == informations.length){
+    	if(informations[i+1] == ' ' || (i+1) == informations.length) {
     		infoArray.push(toAdd);
     		toAdd = '';
     	}
@@ -37,18 +38,32 @@ app.get('/lookup', function(req, res){	//When information request is made
     	}
     }
 
-	MongoClient.connect(url, function(err, db){
-		console.log("Connected succesfully to Mongodb Server");
+
+	MongoClient.connect(url, function(err, db) {
 		var equCollection = db.collection('equations');
-		var algCollection = db.collection('algorithms');
-		equCollection.find({units: {$in: infoArray}}).forEach(function(doc){
-			fs.appendFile("answers.json", JSON.stringify(doc), function(err) {
-				if(err){
-					return console.log(err);
-				}
+		for(var i = 0; i < infoArray.length; i++){
+			equCollection.find({units: infoArray[i]}).forEach(function(doc) {
+				fs.appendFile("answers.json", JSON.stringify(doc), function(err) {
+					if(err){
+						return console.log(err);
+					}
+				});
+				// $('body').append('<hr>');
+				// $('body').append('<ul class="equList">');
+				// $("body ul").last().append("<li class='equHeader'>" + doc.name);
+				// $("body ul").last().append("<li class='equSelf'>" + doc.equation);
+				// $("body ul").last().append("<li class='equDescription'>" + doc.description).html();
 			});
-		});
+		}
+		// equCollection.find({units: {$in: infoArray}}).forEach(function(doc){
+		// 	fs.appendFile("answers.json", JSON.stringify(doc), function(err) {
+		// 		if(err){
+		// 			return console.log(err);
+		// 		}
+		// 	});
+		// });
 		db.close();
+
 	});
 	res.sendFile(__dirname + '/answers.html');
 });

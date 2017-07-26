@@ -19,7 +19,9 @@
   },
   "homepage": "https://github.com/NoahNaiman/Aliquator#readme",
   "dependencies": {
+    "cheerio": "^1.0.0-rc.2",
     "express": "^4.15.2",
     "mongodb": "^2.2.26",
+    "pug": "^2.0.0-rc.2"
   }
 }
