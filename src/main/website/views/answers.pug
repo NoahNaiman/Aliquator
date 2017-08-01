@@ -1,0 +1,15 @@
+doctype html
+html
+	head
+		title Answers For You
+		link(rel='stylesheet', type='text/css', href='/answers.css')
+	body
+		ul#navbar
+			li
+				a(href='index.html') Home
+		each name, index in equNames
+			hr
+			ul(class='equList')
+				li(class='equHeader')= equNames[index]
+				li(class='equSelf')= equActuals[index]
+				li(class='equDescription')= equDescriptions[index]

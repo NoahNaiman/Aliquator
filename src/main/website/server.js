@@ -1,10 +1,12 @@
 //Hosted server, used to retrieve and process data
 
 //Library imports
-var MongoClient = require('mongodb').MongoClient;
-var fs = require('fs');
-var express = require('express');
-var app = express();
+const Server = require('mongo-sync').Server;
+const server = new Server('127.0.0.1');
+const Fiber = require('fibers');
+const fs = require('fs');
+const express = require('express');
+const app = express();
 app.set('view engine', 'pug');
 
 //Goes through this database
@@ -21,6 +23,8 @@ app.get('/', function(req, res){	//For Homepage
 });
 
 app.get('/lookup', function(req, res){	//When information request is made
+
+	//Cleans up given keywords
 	var informations = req.query.informationSearch;
 	informations = informations.replace(/,/g, '');
 	var infoArray = [];
@@ -38,34 +42,24 @@ app.get('/lookup', function(req, res){	//When information request is made
     	}
     }
 
+    //Variables to be used by Pug
+    var equationNames = [];
+    var equationActuals = [];
+    var equationDescriptions = [];
 
-	MongoClient.connect(url, function(err, db) {
-		var equCollection = db.collection('equations');
-		for(var i = 0; i < infoArray.length; i++){
-			equCollection.find({units: infoArray[i]}).forEach(function(doc) {
-				fs.appendFile("answers.json", JSON.stringify(doc), function(err) {
-					if(err){
-						return console.log(err);
-					}
-				});
-				// $('body').append('<hr>');
-				// $('body').append('<ul class="equList">');
-				// $("body ul").last().append("<li class='equHeader'>" + doc.name);
-				// $("body ul").last().append("<li class='equSelf'>" + doc.equation);
-				// $("body ul").last().append("<li class='equDescription'>" + doc.description).html();
-			});
-		}
-		// equCollection.find({units: {$in: infoArray}}).forEach(function(doc){
-		// 	fs.appendFile("answers.json", JSON.stringify(doc), function(err) {
-		// 		if(err){
-		// 			return console.log(err);
-		// 		}
-		// 	});
-		// });
-		db.close();
+    Fiber(function(){
+    	var results = server.db('Aliquator').getCollection('equations').find({units: {$in: infoArray}}).toArray();
 
-	});
-	res.sendFile(__dirname + '/answers.html');
+    	for(var i = 0; i < results.length; i++){
+    		equationNames.push(results[i].name);
+			equationActuals.push(results[i].equation);
+			equationDescriptions.push(results[i].description);
+    	}
+
+    	res.render('answers', {equNames: equationNames, equActuals: equationActuals, equDescriptions: equationDescriptions});
+
+    }).run();
+
 });
 
 app.use(express.static(__dirname + '/'));	//For CSS
@@ -75,3 +69,15 @@ app.use(express.static(__dirname + '/'));	//For CSS
 app.listen(3000, function(){
 	console.log('Listening on port: 3000');
 });
+
+//Function to query Mongodb collection using Mongodb.
+// function pullMongodb(info, callback) {
+// 	MongoClient.connect(url, function(err, db) {
+// 		var equCollection = db.collection('equations');
+// 		equCollection.find({units: {$in: info}}).toArray(function(items) {
+// 			console.log(items);
+// 			db.close();
+// 			callback(items);
+// 		});
+// 	});
+// }
