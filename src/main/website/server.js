@@ -14,11 +14,6 @@ var url = 'mongodb://localhost/Aliquator';
 
 //Express Routes
 app.get('/', function(req, res){	//For Homepage
-	fs.writeFile("answers.json", '', function(err) {
-		if(err){
-			return console.log(err);
-			}
-		});
 	res.sendFile(__dirname + '/index.html');
 });
 
