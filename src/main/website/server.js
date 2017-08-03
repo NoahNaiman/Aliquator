@@ -1,10 +1,9 @@
-//Hosted server, used to retrieve and process data
+//Hosted server, used to process and retrieve data
 
 //Library imports
 const Server = require('mongo-sync').Server;
 const server = new Server('127.0.0.1');
 const Fiber = require('fibers');
-const fs = require('fs');
 const express = require('express');
 const app = express();
 app.set('view engine', 'pug');
@@ -42,6 +41,7 @@ app.get('/lookup', function(req, res){	//When information request is made
     var equationActuals = [];
     var equationDescriptions = [];
 
+    //Query Mongodb collection, then adds them to arrays, before rendering using Pug
     Fiber(function(){
     	var results = server.db('Aliquator').getCollection('equations').find({units: {$in: infoArray}}).toArray();
 

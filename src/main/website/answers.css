@@ -38,6 +38,7 @@ li a:hover{
 }
 
 hr{
+    position: relative;
     background-color: rgb(41, 163, 41);
     border: none;
     height: 6px;
@@ -46,10 +47,11 @@ hr{
 }
 
 .equList{
-    margin-top: 85px;
+    position: relative;
     float: left;
     margin-left: 32px;
     font-size: 38px;
+    margin-bottom: 45px;
 }
 
 
