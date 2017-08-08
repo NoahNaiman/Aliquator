@@ -2,7 +2,13 @@ body{
 	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
-ul{
+h1{
+    text-align: center;
+    font-size: 45px;
+    font-weight: normal;
+}
+
+#navbar {
    	list-style-type: none;
     overflow: hidden;
     background-color: rgb(255, 255, 255);
@@ -13,9 +19,10 @@ ul{
     margin-bottom: 0px;
     margin-left: -8px;
     padding-left: 0;
+    cursor: pointer;
 }
 
-li{
+.navItem {
 	display: inline;
 	float: right;
 	font-size: 20px;
@@ -23,7 +30,7 @@ li{
     margin-top: 15px;
 }
 
-li a{
+.navItemA {
 	font-family: 'Open Sans', 'Helvetica Neue', Arial, sans-serif;
     display: block;
     color: rgb(41, 163, 41);
@@ -96,4 +103,13 @@ li a:hover:not(.active) {
 
 #search .btn:hover {
     box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24),0 17px 50px 0 rgba(0,0,0,0.19);
+}
+
+#aboutBackgroundBox {
+    margin-top: 762px;
+    margin-left: -8px;
+    background-color: rgb(41, 163, 41);
+    color: rgb(255, 255, 255);
+    width: 1440px;
+    height: 400px;
 }
