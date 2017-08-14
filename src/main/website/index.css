@@ -5,7 +5,8 @@ body{
 h1{
     text-align: center;
     font-size: 45px;
-    font-weight: normal;
+    /*font-weight: normal;*/
+    color: rgb(255, 255, 255);
 }
 
 #navbar {
@@ -111,5 +112,31 @@ li a:hover:not(.active) {
     background-color: rgb(41, 163, 41);
     color: rgb(255, 255, 255);
     width: 1440px;
-    height: 400px;
+    height: 440px;
+}
+
+.howToContainer{
+    margin-top: 762px;
+    height: 800px;
+
+}
+#howToBox{
+    background-color: rgb(41, 163, 41);
+    /*color: black;*/
+}
+
+#howToText{
+    float: right;
+    margin-left: 30px;
+    margin-right: 30px;
+    display: inline-block;
+}
+
+#howToImage{
+    float: left;
+    display: inline-block;
+}
+
+#leftSideBox{
+    width: 400px;
 }
