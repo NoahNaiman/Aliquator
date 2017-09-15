@@ -16,5 +16,6 @@ html
 			ul(class='equList')
 				li(class='equHeader')= equNames[index]
 				li(class='equSelf')
-					input(id='equInput', type='text', name='equationInputBox', placeholder=equActuals[index])
+					form(class='userValues' action='#')
+						input(id='equInput', type='text', name='equationInputBox', placeholder=equActuals[index])
 				li(class='equDescription')= equDescriptions[index]

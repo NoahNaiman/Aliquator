@@ -64,15 +64,3 @@ app.use(express.static(__dirname + '/'));	//For CSS
 app.listen(3000, function(){
 	console.log('Listening on port: 3000');
 });
-
-//Function to query Mongodb collection using Mongodb.
-// function pullMongodb(info, callback) {
-// 	MongoClient.connect(url, function(err, db) {
-// 		var equCollection = db.collection('equations');
-// 		equCollection.find({units: {$in: info}}).toArray(function(items) {
-// 			console.log(items);
-// 			db.close();
-// 			callback(items);
-// 		});
-// 	});
-// }

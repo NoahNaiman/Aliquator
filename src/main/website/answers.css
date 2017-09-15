@@ -81,6 +81,10 @@ hr{
     min-width: 4px;
 }
 
+form{
+    display: inline;
+}
+
 ::-webkit-input-placeholder { /* WebKit, Blink, Edge */
     color: black;
     opacity: 1;
