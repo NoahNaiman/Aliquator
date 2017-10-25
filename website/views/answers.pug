@@ -4,7 +4,7 @@ html
 		title Answers For You
 		link(rel='stylesheet', type='text/css', href='/answers.css')
 		script(src='https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js')
-		script(src='answers.js', type='text/javascript')
+		script(src='/answers.js', type='text/javascript')
 		script(src='https://code.jquery.com/jquery-1.11.1.min.js')
 		script(src='/scripts/jquery.auto-grow-input.js')
 	body
@@ -16,6 +16,5 @@ html
 			ul(class='equList')
 				li(class='equHeader')= equNames[index]
 				li(class='equSelf')
-					form(class='userValues' action='#')
-						input(id='equInput', type='text', name='equationInputBox', placeholder=equActuals[index])
+					input(class='equInput', id=equNames[index], type='text', name='equationInputBox', placeholder=equActuals[index])
 				li(class='equDescription')= equDescriptions[index]
