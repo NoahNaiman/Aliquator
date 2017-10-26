@@ -23,6 +23,7 @@ $(document).keydown(function(e){
 		     }
 		     console.log(parsed);
 		     $('input[type="text"]').unbind();
+		     $("input").autoGrowInput({minWidth:0, comfortZone:0});
 		});
 	}
 });
