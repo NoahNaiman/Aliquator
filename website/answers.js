@@ -30,10 +30,24 @@ $(document).keydown(function(e){
 });
 
 function solve(equation){
-	var restructured =[];
+	var restructured =['('];
 	for(var i = 0; i < equation.length; i++) {
 		if(("1234567890".includes(equation[i])) && ("ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz".includes(equation[i+2]) || "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz".includes(equation[i-2]))){
+			if("ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz".includes(equation[i+2])){
+				switch(equation[i+1]){
+					case '*':
+						for(var j = 0; equation[j] != '='; j++) {
+							restructured.push(equation[j]);
+						}
+						restructured.push(')', '/', equation[i+2]);
+						for(var k = equation.indexOf('=') + 1; equation[k] != equation[i+2]; k++) {
+							restructured.push(equation[k]);
+						}
+				}
+			}
+			else{
 
+			}
 		}
 	}
 }
